@@ -1,0 +1,246 @@
+void ScreenWel();
+void Login();
+void frame();
+void admin();
+void mm1();
+void mm2();
+void mm3();
+void back();
+int fr,bsr,bdr,bfr,btr;
+struct Room
+{
+int Rnum;
+char Rtype[10];
+char Cname[50];
+};
+int main()
+{
+ScreenWel();
+Login();
+return 0;
+}
+void ScreenWel()
+{
+printf("\n\n WELCOME \n ->->TO \n NIVEDITHA'S GUEST HOUSE\n");
+}
+void Login()
+{
+fr=3;
+int id ;
+int pa;
+frame();
+printf("::Please Enter your login information to the system ::\n");
+frame();
+printf("::\n");
+printf("::\n");
+printf("User id ");
+scanf("%d",&id);
+printf("::\n");
+printf("Password");
+scanf("%d",&pa);
+printf("::\n");
+printf("::\n");
+printf("::-::-::-::-::-::\n");
+if(id==111 &&pa==111)
+{
+system("cls");
+printf("\n:::\nLogin successful::\n\n");
+admin();
+}
+//
+else
+{
+system("cls");
+printf("\n Login unsuccessful please try again ::\n\n");
+Login();
+}
+}
+void admin()
+{
+int a;
+ScreenWel();
+printf(" please select your option\n\n1- See Avalabile Rooms\n\n2- Reserve a room\n\n3-
+Log off\n\n");
+scanf("%d",&a);
+switch(a)
+{
+case 1:
+system("cls");
+ScreenWel();
+printf("\nSee Avalabile Rooms\n========\n");
+mm1();
+break;
+case 2:
+system("cls");
+ScreenWel();
+printf("\nReserve a room\n\n");
+mm2();
+break;
+case 3:
+mm3();
+break;
+default:
+system("cls");
+printf("invalid input Please Try Again\n");
+admin();
+}
+}
+void mm1()
+{
+int sr=10-bsr;
+int dr=15-bdr;
+int tr=5-btr;
+int fr=3-bfr;
+printf("\n\nAvailable single Rooms -%d\n\n*Price per 1 Night-Rs.7000\n\nAvailable double
+rooms -%d\n\n *Price Per 1 Night-Rs.11000\n\nAvalble Triple rooms -%d\n\n*price per 1
+Night-Rs.15000\n\nAvailable Family rooms -%d\n\n*price per 1 Night-Rs.20000\n\n
+",sr,dr,tr,fr);
+back();
+}
+void mm2()
+{
+int sr=10;
+int dr=15;
+int tr=5;
+int fr=2;
+int N,tot,q;
+int psr=7000;
+int pdr=11000;
+int ptr=15000;
+int pfr=20000;
+int i=0;
+char SR[3]={"sr"};
+char DR[3]={"dr"};
+char TR[3]={"tr"};
+char FR[3]={"fr"};
+struct Room room[35];
+for(i=0;i<35;i++)
+{
+printf("\nPlease Enter Type of Room [sr-Single Room dr-Doubble Room tr-Tripple
+Room fr-Family Room]\n");
+scanf("%s",room[i].Rtype);
+if(strcmp(SR,room[i].Rtype)==0 && sr>0)
+{
+printf("\n%d single rooms are avalbale\n\n",sr);
+printf("How many rooms need\n");
+scanf("%d",&bsr);
+for(i=0;i<(bsr);i++)
+{
+printf("\nEnter Room Number\n");
+scanf("%d",&room[i].Rnum);
+}
+sr=sr-bsr;
+}
+else if(strcmp(DR,room[i].Rtype)==0 && dr>0)
+{
+printf("\n%d Doubble rooms are avalbale\n\n",dr);
+printf("How many rooms need\n");
+scanf("%d",&bdr);
+for(i=0;i<bdr;i++)
+{
+printf("\nEnter Room Number\n");
+scanf("%d",&room[i].Rnum);
+}
+dr=dr-bdr;
+}
+else if(strcmp(TR,room[i].Rtype)==0 &&tr>0)
+{
+printf("\n%d Tripple rooms are avalbale\n\n",tr);
+printf("How many rooms need\n");
+scanf("%d",&btr);
+for(i=0;i<btr;i++)
+{
+printf("\nEnter Room Number\n");
+scanf("%d",&room[i].Rnum);
+}
+tr=tr-btr;
+}
+else if(strcmp(FR,room[i].Rtype)==0 &&fr>0)
+{
+printf("\n%dFamily rooms are avalbale\n\n",fr);
+printf("How many rooms need\n");
+scanf("%d",&bfr);
+for(i=0;i<bfr;i++)
+{
+printf("\nEnter Room Number\n");
+scanf("%d",&room[i].Rnum);
+}
+fr=fr-bfr;
+}
+else
+{
+printf("\nAll Rooms Are currently booked\nPress any key to continue or 1 - main
+menu");
+scanf("%d",&q);
+if(q==1)
+{
+system("cls");
+admin();
+}
+else
+{
+system("cls");
+mm2();
+}
+}
+printf("\nCoustomer Name\n");
+scanf("%s",room[i].Cname);
+printf("\nEnter number of Nighs\n");
+scanf("%d",&N);
+tot=(psr+pdr+pfr+ptr)*(bfr+bsr+bdr+btr)*N;
+printf("\nTotal cost is RS %d",tot);
+printf("\nPress-1 to main menu or num to next customer\n");
+scanf("%d",&q);
+if(q==1)
+{
+system("cls");
+admin();
+}
+else
+{
+system("cls");
+ScreenWel();
+}
+}
+}
+void mm3()
+{
+int a;
+printf("\nAre you sure you want to Log Off?\n 1-yes any num continue\n ");
+scanf("%d",&a);
+if(a==1)
+{
+system("cls");
+ScreenWel();
+Login();
+}
+else
+{
+system("cls");
+admin();
+}
+}
+void frame()
+{
+int i;
+for(i=0;i<fr;i++)
+{
+printf("::::\n");
+}
+}
+void back()
+{
+int ba;
+printf("\n*************Press 1 to back to the main menu**************\n");
+scanf("%d",&ba);
+if(ba==1)
+{
+system("cls");
+admin();
+}
+else
+{
+printf("\nWrong input check your input!!!!!!!!!!!!!\n");
+back();
+}
+}
